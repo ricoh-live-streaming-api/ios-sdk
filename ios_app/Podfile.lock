@@ -1,0 +1,55 @@
+PODS:
+  - AnyCodable-FlightSchool (0.6.7)
+  - BlueCryptor (1.0.32)
+  - BlueECC (1.2.5)
+  - BlueRSA (1.0.200)
+  - CocoaLumberjack/Core (3.8.2)
+  - CocoaLumberjack/Swift (3.8.2):
+    - CocoaLumberjack/Core
+  - KituraContracts (1.2.1):
+    - LoggerAPI (~> 1.7)
+  - LoggerAPI (1.9.200):
+    - Logging (~> 1.1)
+  - Logging (1.4.0)
+  - SwiftJWT (3.6.200):
+    - BlueCryptor (~> 1.0)
+    - BlueECC (~> 1.1)
+    - BlueRSA (~> 1.0)
+    - KituraContracts (~> 1.2)
+    - LoggerAPI (~> 1.7)
+  - SwiftyJSON (4.3.0)
+
+DEPENDENCIES:
+  - AnyCodable-FlightSchool (~> 0.6.0)
+  - CocoaLumberjack/Swift
+  - SwiftJWT
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - AnyCodable-FlightSchool
+    - BlueCryptor
+    - BlueECC
+    - BlueRSA
+    - CocoaLumberjack
+    - KituraContracts
+    - LoggerAPI
+    - Logging
+    - SwiftJWT
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  AnyCodable-FlightSchool: 261cbe76757802b17d471b9059b21e6fa5edf57b
+  BlueCryptor: b0aee3d9b8f367b49b30de11cda90e1735571c24
+  BlueECC: 0d18e93347d3ec6d41416de21c1ffa4d4cd3c2cc
+  BlueRSA: dfeef51db96bcc4edec654956c1581adbda4e6a3
+  CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
+  KituraContracts: e845e60dc8627ad0a76fa55ef20a45451d8f830b
+  LoggerAPI: ad9c4a6f1e32f518fdb43a1347ac14d765ab5e3d
+  Logging: beeb016c9c80cf77042d62e83495816847ef108b
+  SwiftJWT: 88c412708f58c169d431d344c87bc79a87c830ae
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+
+PODFILE CHECKSUM: a75384e192cdb12a6a376e4d0500b85df2762680
+
+COCOAPODS: 1.14.3

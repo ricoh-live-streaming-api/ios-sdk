@@ -1,0 +1,373 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios16.1 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name client_sdk
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AnyCodable
+import CocoaLumberjack
+import Foundation
+import Swift
+import SwiftyJSON
+import UIKit
+import WebRTC
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_exported import client_sdk
+@objc @_inheritsConvenienceInitializers public class LSClientLogFileManager : CocoaLumberjack.DDLogFileManagerDefault {
+  convenience public init(fileNamePrefix: Swift.String, logsDirectory: Swift.String)
+  @objc override dynamic public var newLogFileName: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public func isLogFile(withName fileName: Swift.String!) -> Swift.Bool
+  @objc override dynamic public init(logsDirectory: Swift.String?)
+  @objc deinit
+}
+public class LibWebrtcLogOption : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var path: Swift.String
+  public var maxTotalFileSize: Swift.Int
+  public var logLevel: client_sdk.LibWebRTCLogLevel
+  public init(path: Swift.String, maxTotalFileSize: Swift.Int, logLevel: client_sdk.LibWebRTCLogLevel)
+  public init(path: Swift.String)
+  @objc deinit
+}
+public class LSAddLocalTrackEvent {
+  final public let mediaStreamTrack: WebRTC.RTCMediaStreamTrack
+  final public let stream: WebRTC.RTCMediaStream
+  public init(mediaStreamTrack: WebRTC.RTCMediaStreamTrack, stream: WebRTC.RTCMediaStream)
+  @objc deinit
+}
+public class SDKError : Swift.Error {
+  public init(detail: client_sdk.ErrorDetail)
+  public func getDetail() -> client_sdk.ErrorDetail
+  public func toReportString() -> Swift.String
+  @objc deinit
+}
+public class LSTrackOption {
+  final public let meta: Swift.Dictionary<Swift.String, Any>
+  final public let mute: client_sdk.MuteType
+  public init(meta: Swift.Dictionary<Swift.String, Any>, mute: client_sdk.MuteType)
+  @objc deinit
+}
+public class Camera2VideoCapturer : client_sdk.VideoCapturer {
+  public init(position: AVFoundation.AVCaptureDevice.Position = .front)
+  public func initialize(videoSource: WebRTC.RTCVideoSource)
+  public func start()
+  public func stop()
+  @objc deinit
+}
+public class LSAddRemoteConnectionEvent {
+  final public let connectionId: Swift.String
+  final public let metadata: Swift.Dictionary<Swift.String, Swift.AnyObject>
+  public init(connectionId: Swift.String, metadata: Swift.Dictionary<Swift.String, Swift.AnyObject>)
+  @objc deinit
+}
+public class ReceivingOption : Swift.Codable {
+  final public let enabled: Swift.Bool
+  public init(enabled: Swift.Bool)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public class SendingVideoOption : Swift.Codable {
+  final public let codec: client_sdk.VideoCodecType
+  final public let priority: client_sdk.SendingPriority
+  final public let maxBitrateKbps: Swift.Int
+  final public let muteType: client_sdk.VideoOptionMuteType
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case codec
+    case priority
+    case maxBitrateKbps
+    case muteType
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias RawValue = Swift.String
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public init(codec: client_sdk.VideoCodecType, priority: client_sdk.SendingPriority, maxBitrateKbps: Swift.Int, muteType: client_sdk.VideoOptionMuteType)
+  public static func getVideoOptionMuteType(muteType: client_sdk.MuteType) -> client_sdk.VideoOptionMuteType
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public class SendingOption : Swift.Codable {
+  final public let video: client_sdk.SendingVideoOption
+  final public let enabled: Swift.Bool
+  public init(video: client_sdk.SendingVideoOption, enabled: Swift.Bool)
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public class LSAddRemoteTrackEvent {
+  final public let connectionId: Swift.String
+  final public let stream: WebRTC.RTCMediaStream
+  final public let mediaStreamTrack: WebRTC.RTCMediaStreamTrack
+  public var meta: Swift.Dictionary<Swift.String, Any>
+  public var mute: client_sdk.MuteType
+  public init(connectionId: Swift.String, stream: WebRTC.RTCMediaStream, mediaStreamTrack: WebRTC.RTCMediaStreamTrack, meta: Swift.Dictionary<Swift.String, Any>, mute: client_sdk.MuteType)
+  @objc deinit
+}
+public class LSRemoveRemoteConnectionEvent {
+  final public let connectionId: Swift.String
+  final public let metadata: Swift.Dictionary<Swift.String, Swift.AnyObject>
+  final public let mediaStreamTracks: [WebRTC.RTCMediaStreamTrack]
+  public init(connectionId: Swift.String, metadata: Swift.Dictionary<Swift.String, Swift.AnyObject>, mediaStreamTracks: [WebRTC.RTCMediaStreamTrack])
+  @objc deinit
+}
+public class Option {
+  final public let signalingURL: Swift.String?
+  final public let localLSTracks: [client_sdk.LSTrack]?
+  final public let meta: Swift.Dictionary<Swift.String, Any>?
+  final public let sending: client_sdk.SendingOption?
+  final public let receiving: client_sdk.ReceivingOption?
+  final public let iceServersProtocol: client_sdk.IceServersProtocol?
+  public init(signalingURL: Swift.String?, localLSTracks: [client_sdk.LSTrack]?, meta: Swift.Dictionary<Swift.String, Any>?, sending: client_sdk.SendingOption?, receiving: client_sdk.ReceivingOption?, iceServersProtocol: client_sdk.IceServersProtocol?)
+  @objc deinit
+}
+public protocol ClientDelegate {
+  func onConnecting()
+  func onClosing()
+  func onClosed()
+  func onAddLocalTrack(event: client_sdk.LSAddLocalTrackEvent)
+  func onOpen(event: client_sdk.LSOpenEvent)
+  func onAddRemoteConnection(event: client_sdk.LSAddRemoteConnectionEvent)
+  func onRemoveRemoteConnection(event: client_sdk.LSRemoveRemoteConnectionEvent)
+  func onAddRemoteTrack(event: client_sdk.LSAddRemoteTrackEvent)
+  func onError(event: client_sdk.SDKErrorEvent)
+}
+@objc @_inheritsConvenienceInitializers public class Client : ObjectiveC.NSObject {
+  public var delegate: (any client_sdk.ClientDelegate)?
+  @objc override dynamic public init()
+  public init(clientLogOption: client_sdk.ClientLogOption!)
+  public func getUserMedia(constraints: client_sdk.MediaStreamConstraints) throws -> WebRTC.RTCMediaStream?
+  public func setLibWebrtcLogOption(option: client_sdk.LibWebrtcLogOption) throws
+  public func connect(clientId: Swift.String, accessToken: Swift.String, option: client_sdk.Option) throws
+  public func changeMute(lsTrack: client_sdk.LSTrack, nextMuteType: client_sdk.MuteType) throws
+  public func updateTrackMeta(lsTrack: client_sdk.LSTrack, meta: Swift.Dictionary<Swift.String, Any>) throws
+  public func getState() -> client_sdk.State
+  public func disconnect()
+  public func getStats(mediaStreamTrack: WebRTC.RTCMediaStreamTrack?) -> Swift.Dictionary<Swift.String, WebRTC.RTCStatisticsReport>
+  public func updateMeta(meta: Swift.Dictionary<Swift.String, Any>) throws
+  public func changeMediaRequirements(connectionId: Swift.String, videoRequirement: client_sdk.VideoRequirement) throws
+  public func changeVideoSendBitrate(maxBitrateKbps: Swift.Int) throws
+  public func changeVideoSendFramerate(maxFramerate: Swift.Int) throws
+  public func replaceMediaStreamTrack(lsTrack: client_sdk.LSTrack, mediaStream: WebRTC.RTCMediaStreamTrack)
+  @objc deinit
+}
+extension client_sdk.Client : WebRTC.RTCPeerConnectionDelegate {
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didChange stateChanged: WebRTC.RTCSignalingState)
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didAdd stream: WebRTC.RTCMediaStream)
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didAdd rtpReceiver: WebRTC.RTCRtpReceiver, streams mediaStreams: [WebRTC.RTCMediaStream])
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didRemove stream: WebRTC.RTCMediaStream)
+  @objc dynamic public func peerConnectionShouldNegotiate(_ peerConnection: WebRTC.RTCPeerConnection)
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didChange newState: WebRTC.RTCIceConnectionState)
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didChange newState: WebRTC.RTCIceGatheringState)
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didGenerate candidate: WebRTC.RTCIceCandidate)
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didRemove candidates: [WebRTC.RTCIceCandidate])
+  @objc dynamic public func peerConnection(_ peerConnection: WebRTC.RTCPeerConnection, didOpen dataChannel: WebRTC.RTCDataChannel)
+}
+public class ErrorDetail {
+  final public let code: Swift.Int
+  final public let error: Swift.String
+  final public let category: Swift.Int?
+  final public let detail: (any Swift.Error)?
+  final public let type: client_sdk.ErrorType?
+  final public let timestamp: Foundation.Date?
+  convenience public init(code: Swift.Int, error: Swift.String)
+  public init(code: Swift.Int, error: Swift.String, detail: (any Swift.Error)?)
+  public func getCode() -> Swift.Int
+  public func getType() -> client_sdk.ErrorType
+  public func getError() -> Swift.String
+  public func toReportString() -> Swift.String
+  @objc deinit
+}
+public class SDKErrorEvent {
+  final public let detail: client_sdk.ErrorDetail
+  public init(detail: client_sdk.ErrorDetail)
+  public func toReportString() -> Swift.String
+  @objc deinit
+}
+public class ClientLogOption {
+  final public let logDirPath: Swift.String
+  final public let filePrefix: Swift.String
+  final public let maxFileSizeMb: Swift.Int
+  final public let maxFileCount: Swift.Int
+  final public let logLevel: client_sdk.ClientLogLevel
+  public init(logDirPath: Swift.String, filePrefix: Swift.String, maxFileSizeMb: Swift.Int, maxFileCount: Swift.Int, logLevel: client_sdk.ClientLogLevel)
+  @objc deinit
+}
+public class LSOpenEvent {
+  final public let accessTokenInfoJsonString: Swift.String
+  public init(accessTokenInfoJsonString: Swift.String)
+  @objc deinit
+}
+public enum State {
+  case IDLE
+  case CONNECTING
+  case OPEN
+  case CLOSING
+  case CLOSED
+  public static func == (a: client_sdk.State, b: client_sdk.State) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ClientLogLevel {
+  case Error
+  case Warn
+  case Info
+  case Debug
+  case Verbose
+  public static func == (a: client_sdk.ClientLogLevel, b: client_sdk.ClientLogLevel) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum LibWebRTCLogLevel {
+  case VERBOSE
+  case INFO
+  public static func == (a: client_sdk.LibWebRTCLogLevel, b: client_sdk.LibWebRTCLogLevel) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum VideoCodecType : Swift.String, Swift.Codable {
+  case VP8
+  case VP9
+  case H264
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum SendingPriority : Swift.String, Swift.Codable {
+  case NORMAL
+  case HIGH
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum VideoOptionMuteType : Swift.String, Swift.Codable {
+  case UNMUTE
+  case SOFT_MUTE
+  case HARD_MUTE
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum IceServersProtocol : Swift.String, Swift.Codable {
+  case ALL
+  case UDP
+  case TCP
+  case TLS
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum MuteType : Swift.String {
+  case UNMUTE
+  case SOFT_MUTE
+  case HARD_MUTE
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum ErrorType : Swift.String {
+  case PARAMETER_ERROR
+  case NETWORK_ERROR
+  case UNEXPECTED_ERROR
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum VideoRequirement {
+  case REQUIRED
+  case UNREQUIRED
+  public static func == (a: client_sdk.VideoRequirement, b: client_sdk.VideoRequirement) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol VideoCapturer {
+  func initialize(videoSource: WebRTC.RTCVideoSource)
+  func start()
+  func stop()
+}
+public class LSTrack {
+  final public let mediaStreamTrack: WebRTC.RTCMediaStreamTrack
+  final public let stream: WebRTC.RTCMediaStream
+  final public let meta: Swift.Dictionary<Swift.String, Any>
+  final public let muteType: client_sdk.MuteType
+  public init(mediaStreamTrack: WebRTC.RTCMediaStreamTrack, stream: WebRTC.RTCMediaStream, option: client_sdk.LSTrackOption)
+  @objc deinit
+}
+extension client_sdk.LSTrack : Swift.Equatable {
+  public static func == (lhs: client_sdk.LSTrack, rhs: client_sdk.LSTrack) -> Swift.Bool
+}
+public class MediaStreamConstraints {
+  public init(videoCapturer: (any client_sdk.VideoCapturer)?, audio: Swift.Bool)
+  @objc deinit
+}
+public class PixelBufferCapturer : client_sdk.VideoCapturer {
+  public init()
+  public func initialize(videoSource: WebRTC.RTCVideoSource)
+  public func start()
+  public func start(pixelBuffer: CoreVideo.CVPixelBuffer, orientation: ImageIO.CGImagePropertyOrientation)
+  public func stop()
+  @objc deinit
+}
+extension client_sdk.SendingVideoOption.CodingKeys : Swift.Equatable {}
+extension client_sdk.SendingVideoOption.CodingKeys : Swift.Hashable {}
+extension client_sdk.SendingVideoOption.CodingKeys : Swift.RawRepresentable {}
+extension client_sdk.State : Swift.Equatable {}
+extension client_sdk.State : Swift.Hashable {}
+extension client_sdk.ClientLogLevel : Swift.Equatable {}
+extension client_sdk.ClientLogLevel : Swift.Hashable {}
+extension client_sdk.LibWebRTCLogLevel : Swift.Equatable {}
+extension client_sdk.LibWebRTCLogLevel : Swift.Hashable {}
+extension client_sdk.VideoCodecType : Swift.Equatable {}
+extension client_sdk.VideoCodecType : Swift.Hashable {}
+extension client_sdk.VideoCodecType : Swift.RawRepresentable {}
+extension client_sdk.SendingPriority : Swift.Equatable {}
+extension client_sdk.SendingPriority : Swift.Hashable {}
+extension client_sdk.SendingPriority : Swift.RawRepresentable {}
+extension client_sdk.VideoOptionMuteType : Swift.Equatable {}
+extension client_sdk.VideoOptionMuteType : Swift.Hashable {}
+extension client_sdk.VideoOptionMuteType : Swift.RawRepresentable {}
+extension client_sdk.IceServersProtocol : Swift.Equatable {}
+extension client_sdk.IceServersProtocol : Swift.Hashable {}
+extension client_sdk.IceServersProtocol : Swift.RawRepresentable {}
+extension client_sdk.MuteType : Swift.Equatable {}
+extension client_sdk.MuteType : Swift.Hashable {}
+extension client_sdk.MuteType : Swift.RawRepresentable {}
+extension client_sdk.ErrorType : Swift.Equatable {}
+extension client_sdk.ErrorType : Swift.Hashable {}
+extension client_sdk.ErrorType : Swift.RawRepresentable {}
+extension client_sdk.VideoRequirement : Swift.Equatable {}
+extension client_sdk.VideoRequirement : Swift.Hashable {}
