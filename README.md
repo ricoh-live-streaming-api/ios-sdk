@@ -1,5 +1,5 @@
 # RICOH Live Streaming Client SDK for iOS
-株式会社リコーが提供するRICOH Live Streaming Serviceを利用するためのRICOH Live Streaming Client SDK for iOS です。
+株式会社リコーが提供するRICOH Live Streaming Serviceを利用するためのRICOH Live Streaming Client SDK for iOS です。現在、RICOH Live Streaming Client SDK for iOS は正式版ではなくβ版として提供しています。使用にあたっては、ソフトウェア使用許諾契約書の第１０条を特に注意してご確認ください。
 
 RICOH Live Streaming Serviceは、映像/音声などのメディアデータやテキストデータなどを 複数の拠点間で双方向かつリアルタイムにやりとりできるプラットフォームです。
 
